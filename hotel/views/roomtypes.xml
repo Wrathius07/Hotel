@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Tree view definition -->
+  <record id="view_roomtypes_tree" model="ir.ui.view">
+    <field name="name">hotel.roomtypes.tree</field>
+    <field name="model">hotel.roomtypes</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="description"/>
+        <field name="room_ids"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- Form view definition -->
+  <record id="view_roomtypes_form" model="ir.ui.view">
+    <field name="name">hotel.roomtypes.form</field>
+    <field name="model">hotel.roomtypes</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="description"/>
+        
+          </group>
+          <notebook>
+            <!-- First page -->
+            <page string="Daily Charges" name="page_daily_charges">
+              <field name="dailycharges_ids">
+                <tree editable="bottom">
+                  <field name="charge_id"/>
+                  <field name="amount"/>
+                </tree>
+              </field>
+            </page>
+
+            <!-- Second page -->
+            <page string="Images" name="second_page">
+              <group>
+                <field name="imageroom" widget="image" string="Room Image"/>
+                <field name="imagebathroom" widget="image" string="Bathroom Image"/>
+              </group>
+            </page>
+
+            <page string="Rooms" name="third_page">
+             <field name="room_ids" readonly="1">
+                <tree >
+                 <field name="name"/>  
+                 <field name="description"/>                   
+                </tree>
+              </field>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Action definition -->
+  <record id="action_roomtypes" model="ir.actions.act_window">
+    <field name="name">Room Types</field>
+    <field name="res_model">hotel.roomtypes</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <!-- Menu item definition -->
+  <menuitem 
+    id="menu_roomtypes" 
+    name="Room Types" 
+    parent="hotel_menu_masterlists"
+    action="action_roomtypes"
+    sequence="3"/>
+</odoo>

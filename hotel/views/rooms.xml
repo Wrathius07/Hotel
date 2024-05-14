@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Tree view definition -->
+<record id="view_rooms_tree" model="ir.ui.view">
+    <field name="name">hotel.rooms.tree</field>
+    <field name="model">hotel.rooms</field>
+    <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="description"/>
+          <field name="roomtype_id"/> <!-- Added roomtype_id field -->
+        </tree>
+    </field>
+</record>
+
+<!-- Form view definition -->
+<record id="view_rooms_form" model="ir.ui.view">
+    <field name="name">hotel.rooms.form</field>
+    <field name="model">hotel.rooms</field>
+    <field name="arch" type="xml">
+        <form>
+          <group>
+            <field name="name"/>
+          </group>
+          <group>
+            <field name="description"/>
+            <field name="roomtype_id"/> <!-- Added roomtype_id field -->
+          </group>
+        </form>
+    </field>
+</record>
+
+<!-- Action definition -->
+<record id="action_rooms" model="ir.actions.act_window">
+    <field name="name">Rooms</field>
+    <field name="res_model">hotel.rooms</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<!-- Menu item definition -->
+<menuitem 
+  id="menu_rooms" 
+  name="Rooms" 
+  parent="hotel_menu_masterlists"
+  action="action_rooms"
+  sequence="2"/>
+</odoo>
